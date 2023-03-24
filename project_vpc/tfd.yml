@@ -1,0 +1,17 @@
+---
+- name: Resource Deletion using TF
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+    - name: Execution date & time
+      shell: echo $(date '+%Y.%m.%d %H:%M:%S')
+      register: date_out
+    - debug: msg="{{ date_out.stdout }}"
+
+    - name: TFD
+      debug: msg="***** Going to work on resource deletion *****"
+
+    - name: command execution
+      command: terraform destroy --auto-approve
+      register: tfd_out
+    - debug: msg="{{ tfd_out.stdout }}"

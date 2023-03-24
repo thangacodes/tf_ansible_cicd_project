@@ -1,0 +1,18 @@
+---
+  - hosts: localhost
+    vars:
+      state: present
+      s3_bucket: thanga-demo-tf-24032023
+      key: terraform.tfstate
+      region: ap-south-1
+    tasks:
+    - name: Run Terraform script
+      terraform:
+        project_path: "./"
+        state: "{{ state }}"
+        backend_config:
+          bucket: "{{ s3_bucket }}"
+          key: "{{ key }}"
+          region: "{{ region }}"
+      register: tfa_out
+    - debug: msg="{{ tfa_out.stdout }}"
