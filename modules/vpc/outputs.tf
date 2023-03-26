@@ -7,3 +7,6 @@ output "arn" {
 output "tags" {
     value = aws_vpc.demo.tags  
 }
+output "vpcid" {
+    value = aws_vpc.demo.id
+}
