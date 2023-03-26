@@ -6,6 +6,6 @@ module "vpc" {
     Environment   = "Production"
     Creation_date = "26/03/2023"
     Owner         = "Thangadurai.Murugan"
-    Place         = "Bangalore"
+    Place         = "Paris"
   }
 }
