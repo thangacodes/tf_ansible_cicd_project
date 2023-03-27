@@ -7,3 +7,6 @@ output "ec2pubip" {
 output "ec2tag" {
   value = module.ec2module.ec2tag
 }
+output "ami" {
+  value = module.ec2module.ami_id
+}

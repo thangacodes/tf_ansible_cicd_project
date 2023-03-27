@@ -7,3 +7,6 @@ output "ec2pubip" {
 output "ec2tag" {
     value = aws_instance.ubuntu.tags
 }
+output "ami_id" {
+    value = aws_instance.ubuntu.ami
+}
