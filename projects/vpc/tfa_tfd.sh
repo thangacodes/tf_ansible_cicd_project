@@ -1,5 +1,5 @@
 #!/bin/sh
-echo -e "\e[1;34m ***** This script is executed at *****" $(date '+%Y.%m.%d %H:%M:%S')
+echo -e "\e[1;34m Script executed at:" $(date '+%Y.%m.%d %H:%M:%S')
 ##### Setting up variables #####
 TFINIT='terraform init'
 TFFMT='terraform fmt'
@@ -12,7 +12,7 @@ TFD='terraform destroy --auto-approve'
 
 ##### Script begins now #####
 read -p "Enter the command that you wanted to perform:" ENTER
-echo -e "\e[1;35m ***** You've entered terraform command is:*****" $ENTER
+echo -e "\e[1;35m You've entered terraform command is:" $ENTER
 sleep 5
 if [ "$ENTER" = "$TFINIT" ]; then
         $TFINIT
