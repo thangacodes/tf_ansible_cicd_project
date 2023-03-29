@@ -3,3 +3,4 @@ It is intended to keep Infrastructure automation and software configuration mana
 * Ansible/Roles Software Configuration Management..
 * Jenkins is used to setup Continuous Integration and Continuous deployment (CI/CD)..
 * Shell/Bash is used to automate repeated tasks within Linux OS..
+
