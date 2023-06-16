@@ -31,12 +31,17 @@ jobs:
           echo "Hello, Thangadurai! Hope you're Good!"
           whoami
           pwd
+      - name: disk space checking
+        run: |
+          echo "disk free command"
+          df -hT
+          ls -lrth
+          pwd
+      # - name: Terraform Init
+      #   id: init
+      #   run: terraform init
 
-      - name: Terraform Init
-        id: init
-        run: terraform init
-
-      - name: Terraform Plan
-        id: plan
-        if: github.event_name == 'push'
-        run: terraform plan -no-color
+      # - name: Terraform Plan
+      #   id: plan
+      #   if: github.event_name == 'push'
+      #   run: terraform plan -no-color
