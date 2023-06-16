@@ -37,6 +37,15 @@ jobs:
           df -hT
           ls -lrth
           pwd
+          echo "change directory"
+          cd demo
+          ls -lrt
+          echo "terraform stuff begin"
+          terraform --version
+          terraform init
+          terraform fmt 
+          terraform plan
+          terraform validate
       # - name: Terraform Init
       #   id: init
       #   run: terraform init
