@@ -33,24 +33,3 @@ jobs:
           echo "Hello, Thangadurai! Hope you're Good!"
           echo "Printing Global env variables ${{ env.OWNER_NAME }}"
           echo "Printing Gloabl env variables ${{ env.DATE }}"
-  deploy:
-       
-    name: LINUX COMMANDS
-    runs-on: ubuntu-latest
-    needs: [build]
-    env:
-      VAR1: "DEV-ENV"
-      VAR2: "TESTING"  
-       
-    steps:
-      - name: Print some messages		
-        run: |
-          ls -lrth
-          pwd
-          echo "Project Owner name is: ${{ env.OWNER_NAME }}"
-          echo "Project created date is: ${{ env.DATE }}"
-          echo "CHANGE dir /demo/"
-          cd demo
-          ls -lrt
-          echo "terraform stuff begin"
-	  echo "You are working on ${{ env.VAR1 }}"
