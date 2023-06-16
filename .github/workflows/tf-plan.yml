@@ -4,10 +4,10 @@ name: "Terraform-Infra-Plan"
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "dev" branch
+  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches:
-      - dev
+      - master
 
 jobs:
   terraform:
@@ -20,9 +20,12 @@ jobs:
       AWS_REGION: "ap-south-1"
 
     steps:
+      - name: listing files before
+        run: ls -lart
       - name: Checkout
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v1
+      - name: listing files before
+        run: ls -lart
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       
