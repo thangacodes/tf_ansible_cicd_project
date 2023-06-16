@@ -1,6 +1,9 @@
 # This is a basic workflow to help you get started with Actions
 
 name: "TF-PLAN"
+env:             # Global variable declaration
+  OWNER_NAME: "Thangadurai, Murugan"
+  DATE: "16/06/2023"
 
 # Controls when the workflow will run
 on:
@@ -31,12 +34,14 @@ jobs:
       - name: WELCOME MESSAGE
         run: |
           echo "Hello, Thangadurai! Hope you're Good!"
-          whoami
-          pwd
+          echo "Printing Global env variables ${{ env.OWNER_NAME }}"
+          echo "Printing Gloabl env variables ${{ env.DATE }}"
       - name: LINUX COMMANDS
         run: |
           ls -lrth
           pwd
+          echo "Printing Global env variables ${{ env.OWNER_NAME }}"
+          echo "Printing Gloabl env variables ${{ env.DATE }}"
           echo "CHANGE DIR /demo/"
           cd demo
           ls -lrt
