@@ -54,8 +54,3 @@ jobs:
           ls -lrt
           echo "terraform stuff begin"
 	  echo "You are working on ${{ env.VAR1 }}"
-          terraform --version
-          terraform init 
-          terraform fmt 
-          terraform validate
-          terraform plan
