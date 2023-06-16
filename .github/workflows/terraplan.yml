@@ -31,5 +31,5 @@ jobs:
       - name: WELCOME MESSAGE
         run: |
           echo "Hello, Thangadurai! Hope you're Good!"
-          echo "Printing Global env variables ${{ env.OWNER_NAME }}"
-          echo "Printing Gloabl env variables ${{ env.DATE }}"
+          echo "Project owner is ${{ env.OWNER_NAME }}"
+          echo "Project created date is ${{ env.DATE }}"
