@@ -1,7 +1,5 @@
 provider "aws" {
   region = "ap-south-1"
-  shared_config_files = "/c/Users/IN22917979/.aws/credentials"
-  profile = "default"
 }
 
 resource "aws_instance" "demo" {
