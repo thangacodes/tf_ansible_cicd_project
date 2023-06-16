@@ -25,6 +25,11 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+      
+      - name: Linux command
+        run: 
+          echo "Hello, Thangadurai! Hope you're Good!"
+          pwd
 
       - name: Terraform Init
         id: init
