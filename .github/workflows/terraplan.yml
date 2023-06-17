@@ -48,7 +48,7 @@ jobs:
       - name: TERRAFORM WORK IN PROGRESS
         run: |
           ls -lrt
-          cd projects/
+          cd projects/vpc/
           ls -lrt
           echo "BASIC CHECKS IS IN PROGRESS......"
           terraform init
