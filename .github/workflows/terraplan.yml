@@ -55,5 +55,5 @@ jobs:
           terraform validate
           terraform plan
           echo "TF DESTROY IN PROGRESS......"
-          ${{ env.TF_DESTROY }}
+          echo "Resources will be deleted soon:" ${{ env.TF_DESTROY }}
           ls -lrth
