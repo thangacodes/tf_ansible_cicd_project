@@ -10,7 +10,7 @@ name: "TF PLAN"
 env:
   OWNER_NAME      : "Thangadurai, Murugan"
   DATE            : "16/06/2023"
-  AWS_REGION_NAME : "us-west-2"
+  AWS_REGION_NAME : "ap-south-1"
   ENVIRONMENT     : "Development"
   TF_APPLY        : "terraform apply --auto-approve"
   TF_DESTROY      : "terraform destroy --auto-approve" 
@@ -44,15 +44,15 @@ jobs:
           echo "Project owner is ${{ env.OWNER_NAME }}"
           echo "Project created date is ${{ env.DATE }}"
           echo "Project created Environment is ${{ env.ENVIRONMENT }}"
+          echo "Project created AWS region is: ${{ env.AWS_REGION_NAME }}"
       - name: CHANGING DIR
         run: |
           ls -lrt
           cd demo/
           ls -lrt
           echo "BASIC CHECKS IS IN PROGRESS......"
+          terraform init
           terraform fmt
           terraform validate
           terraform plan
-          echo "TF DESTROY IN PROGRESS......"
-          terraform destroy --auto-approve
           ls -lrth
