@@ -51,9 +51,8 @@ jobs:
           ls -lrt
           echo "BASIC CHECKS IS IN PROGRESS......"
           terraform fmt
-          terraform init
           terraform validate
           terraform plan
           echo "TF DESTROY IN PROGRESS......"
-          "${{ env.TF_DESTROY }}
+          terraform destroy --auto-approve
           ls -lrth
