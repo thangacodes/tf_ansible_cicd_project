@@ -32,17 +32,23 @@ jobs:
           aws-access-key-id    : ${{ secrets.MY_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.MY_SECRET_ACCESS_KEY }}
           aws-region           : ${{ env.AWS_REGION_NAME }}
-  
-      - name: BEFORE
-        run: ls -lart
-      - name: AFTER
-        run: ls -lart
+          
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       
-      - name: WELCOME MESSAGE
+      - name: ENVIRONMENT VARIABLES CHECKING
         run: |
           echo "Hello, Thangadurai! Hope you're Good!"
           echo "Project owner is ${{ env.OWNER_NAME }}"
           echo "Project created date is ${{ env.DATE }}"
           echo "Project created Environment is ${{ env.ENVIRONMENT }}"
+      - name: CHANGING DIR
+        run: |
+          ls -lrt
+          cd demo/
+          ls -lrt
+          terraform fmt
+          terraform init
+          terraform validate
+          terraform plan
+          echo "BASIC CHECKS OF TF IS DONE......"
