@@ -1,7 +1,17 @@
+#---------------------------------------------------------------------
+# GitHub Action Workflow to provision Infra in AWS cloud
+#
+# Version      Date        Info
+# 1.0          2019        Initial Version
+#
+# Made by Thangadurai Murugan Copyleft (c) 2023
+#---------------------------------------------------------------------
 name: "TF PLAN"
 env:
-  OWNER_NAME: "Thangadurai, Murugan"
-  DATE: "16/06/2023"
+  OWNER_NAME      : "Thangadurai, Murugan"
+  DATE            : "16/06/2023"
+  AWS_REGION_NAME : "us-west-2"
+  ENVIRONMENT      : "Development"
 
 on:
   push:
@@ -9,20 +19,21 @@ on:
       - main
 
 jobs:
-  build:
+  my_ci_pipeline:
+    runs-on: [ubuntu-latest]
     
-    name: PROVIDER
-    runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: "ap-south-1"
-
     steps:
+      - name: Git clone our repository
+         uses:actions/checkout@v1
+    
+      - name: Configure my AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id    : ${{ secrets.MY_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secret.MY_SECRET_ACCESS_KEY }}
+          aws-region           : ${{ env.AWS_REGION_NAME }}
       - name: BEFORE
         run: ls -lart
-      - name: GIT CHECKOUT
-        uses: actions/checkout@v1
       - name: AFTER
         run: ls -lart
       - name: Setup Terraform
@@ -33,3 +44,4 @@ jobs:
           echo "Hello, Thangadurai! Hope you're Good!"
           echo "Project owner is ${{ env.OWNER_NAME }}"
           echo "Project created date is ${{ env.DATE }}"
+          echo "Project created Environment is ${{ env.ENVIRONMENT }}"
