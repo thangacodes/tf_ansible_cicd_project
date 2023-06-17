@@ -47,8 +47,12 @@ jobs:
           ls -lrt
           cd demo/
           ls -lrt
+          echo "BASIC CHECKS IS IN PROGRESS......"
           terraform fmt
           terraform init
           terraform validate
           terraform plan
-          echo "BASIC CHECKS OF TF IS DONE......"
+          echo "TF APPLY IN PROGRESS......"
+          terraform apply --auto-approve
+          echo "TF OUTPUT IN PROGRESS......"
+          terraform show output
