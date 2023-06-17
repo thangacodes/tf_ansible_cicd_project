@@ -54,5 +54,4 @@ jobs:
           terraform plan
           echo "TF APPLY IN PROGRESS......"
           terraform apply --auto-approve
-          echo "TF OUTPUT IN PROGRESS......"
-          terraform show output
+          ls -lrth
