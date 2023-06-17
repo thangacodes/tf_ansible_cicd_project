@@ -11,7 +11,9 @@ env:
   OWNER_NAME      : "Thangadurai, Murugan"
   DATE            : "16/06/2023"
   AWS_REGION_NAME : "us-west-2"
-  ENVIRONMENT      : "Development"
+  ENVIRONMENT     : "Development"
+  TF_APPLY        : "terraform apply --auto-approve"
+  TF_DESTROY      : "terraform destroy --auto-approve" 
 
 on:
   push:
@@ -52,6 +54,6 @@ jobs:
           terraform init
           terraform validate
           terraform plan
-          echo "TF APPLY IN PROGRESS......"
-          terraform apply --auto-approve
+          echo "TF DESTROY IN PROGRESS......"
+          ${{ env.TF_DESTROY }}
           ls -lrth
