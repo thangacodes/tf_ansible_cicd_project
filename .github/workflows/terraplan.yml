@@ -20,7 +20,7 @@ on:
 
 jobs:
   my_ci_pipeline:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     
     steps:
       - name: Git clone our repository
@@ -30,8 +30,9 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id    : ${{ secrets.MY_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secret.MY_SECRET_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.MY_SECRET_ACCESS_KEY }}
           aws-region           : ${{ env.AWS_REGION_NAME }}
+  
       - name: BEFORE
         run: ls -lart
       - name: AFTER
