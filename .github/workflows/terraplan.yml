@@ -45,8 +45,8 @@ jobs:
           echo "Project created date is ${{ env.DATE }}"
           echo "Project created Environment is ${{ env.ENVIRONMENT }}"
           echo "Project created AWS region is: ${{ env.AWS_REGION_NAME }}"
-          "${{ env.TF_APPLY }}"
-          "${{ env.TF_DESTROY }}"
+          echo "${{ env.TF_APPLY }}"
+          echo "${{ env.TF_DESTROY }}"
       - name: TERRAFORM WORK IN PROGRESS
         run: |
           ls -lrt
