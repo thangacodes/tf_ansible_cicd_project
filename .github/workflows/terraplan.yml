@@ -1,7 +1,19 @@
+#---------------------------------------------------------------------
+# GitHub Action Workflow to provision Infra in AWS cloud
+#
+# Version      Date        Info
+# 1.0          2019        Initial Version
+#
+# Made by Thangadurai Murugan Copyleft (c) 2023
+#---------------------------------------------------------------------
 name: "TF PLAN"
-env:             # Global variables declaration
-  OWNER_NAME: "Thangadurai, Murugan"
-  DATE: "16/06/2023"
+env:
+  OWNER_NAME      : "Thangadurai, Murugan"
+  DATE            : "16/06/2023"
+  AWS_REGION_NAME : "ap-south-1"
+  ENVIRONMENT     : "Development"
+  TF_APPLY        : "terraform apply --auto-approve"
+  TF_DESTROY      : "terraform destroy --auto-approve" 
 
 on:
   push:
@@ -9,53 +21,41 @@ on:
       - main
 
 jobs:
-  job1:
-    name: PROVIDER
+  my_ci_pipeline:
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: "ap-south-1"
-
+    
     steps:
-      - name: BEFORE
-        run: ls -lart
-      - name: GIT CHECKOUT
-        uses: actions/checkout@v1
-      - name: AFTER
-        run: ls -lart
+      - name: Git clone our repository
+        uses: actions/checkout@v3
+    
+      - name: Configure my AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id    : ${{ secrets.MY_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.MY_SECRET_ACCESS_KEY }}
+          aws-region           : ${{ env.AWS_REGION_NAME }}
+          
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       
-      - name: WELCOME MESSAGE
+      - name: ENVIRONMENT VARIABLES CHECKING
         run: |
           echo "Hello, Thangadurai! Hope you're Good!"
-          echo "Printing Global env variables ${{ env.OWNER_NAME }}"
-          echo "Printing Gloabl env variables ${{ env.DATE }}"
-    job2:
-       name: LINUX COMMANDS
-       runs-on: ubuntu-latest
-       needs: [job1]
-       env:
-          VAR1: "Job2 variable 1"
-	  VAR2: "Job2 variable 2"  
-      steps:
-        - name: Print some messages		
-          run: |
-              ls -lrth
-              pwd
-              echo "Printing Global env variables ${{ env.OWNER_NAME }}"
-              echo "Printing Gloabl env variables ${{ env.DATE }}"
-              echo "CHANGE dir /demo/"
-              cd demo
-              ls -lrt
-              echo "terraform stuff begin" 
-	      echo "Printing Job level env variables ${{ env.VAR1 }}"
-              echo "Printing Job level env variables ${{ env.VAR1 }}"
-              echo "Taking '5' seconds break...."
-              sleep 5
-              terraform --version
-              terraform init 
-              terraform fmt 
-              terraform validate
-              terraform plan
+          echo "Project owner is ${{ env.OWNER_NAME }}"
+          echo "Project created date is ${{ env.DATE }}"
+          echo "Project created Environment is ${{ env.ENVIRONMENT }}"
+          echo "Project created AWS region is: ${{ env.AWS_REGION_NAME }}"
+          echo "${{ env.TF_APPLY }}"
+          echo "${{ env.TF_DESTROY }}"
+      - name: TERRAFORM WORK IN PROGRESS
+        run: |
+          ls -lrt
+          cd demo/
+          ls -lrt
+          echo "BASIC CHECKS IS IN PROGRESS......"
+          terraform init
+          terraform fmt
+          terraform validate
+          terraform plan
+          terraform destroy --auto-approve
+          ls -lrth
